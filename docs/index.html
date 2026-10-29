@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI Upscaler</title>
+<style>
+  :root { --bg:#f6f7f9; --card:#fff; --fg:#1b1f24; --muted:#667085; --line:#d9dde3; --accent:#2f6fed; }
+  @media (prefers-color-scheme: dark) { :root { --bg:#111418; --card:#1a1f25; --fg:#e7eaee; --muted:#98a2b3; --line:#2c333b; --accent:#5b8dff; } }
+  * { box-sizing:border-box; }
+  body { margin:0; font:16px/1.6 system-ui,sans-serif; background:var(--bg); color:var(--fg); }
+  main { max-width:820px; margin:0 auto; padding:48px 16px; }
+  h1 { font-size:36px; margin:0 0 8px; }
+  .lead { color:var(--muted); font-size:18px; margin:0 0 28px; }
+  .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:12px; margin:28px 0; }
+  .card { background:var(--card); border:1px solid var(--line); border-radius:12px; padding:16px; }
+  .card b { display:block; margin-bottom:4px; }
+  pre { background:var(--card); border:1px solid var(--line); border-radius:10px; padding:14px; overflow-x:auto; font-size:14px; }
+  a.btn { display:inline-block; background:var(--accent); color:#fff; padding:10px 18px; border-radius:8px; text-decoration:none; font-weight:600; }
+  footer { color:var(--muted); font-size:14px; margin-top:40px; }
+</style>
+</head>
+<body>
+<main>
+  <h1>AI Upscaler ×4</h1>
+  <p class="lead">Phóng to ảnh gấp 4 lần bằng Real-ESRGAN, chạy ngay trên GPU của máy bạn: không tải ảnh lên server nào, xuất PNG gắn DPI sẵn sàng để in.</p>
+  <a class="btn" id="repo" href="../">Xem mã nguồn trên GitHub</a>
+
+  <div class="grid">
+    <div class="card"><b>Kéo thả trong trình duyệt</b>Giao diện web chạy cục bộ, upscale nhiều ảnh, tải kết quả từng ảnh.</div>
+    <div class="card"><b>Dùng cho in ấn</b>Gắn DPI (mặc định 300) vào file, hiển thị kích thước in theo cm.</div>
+    <div class="card"><b>Ảnh lớn không lo VRAM</b>Xử lý theo tile có padding, không lộ đường nối.</div>
+    <div class="card"><b>CLI xử lý hàng loạt</b>Upscale cả thư mục bằng một lệnh.</div>
+  </div>
+
+  <h2>Cài đặt</h2>
+  <pre>git clone &lt;repo-url&gt;
+cd upscaler-app
+pip install torch --index-url https://download.pytorch.org/whl/cu124
+pip install -r requirements.txt</pre>
+
+  <h2>Sử dụng</h2>
+  <pre># Web app (tự mở http://127.0.0.1:7860)
+python app.py
+
+# Dòng lệnh
+python cli.py anh1.jpg anh2.png --dpi 300</pre>
+  <p>Lần chạy đầu tự tải model <code>RealESRGAN_x4plus.pth</code> (~64 MB). Có GPU NVIDIA sẽ nhanh hơn nhiều; không có vẫn chạy được bằng CPU.</p>
+
+  <footer>Model: <a href="https://github.com/xinntao/Real-ESRGAN">Real-ESRGAN</a> (BSD-3-Clause).</footer>
+</main>
+<script>
+  // On GitHub Pages (user.github.io/repo) point the button at github.com/user/repo
+  const m = location.hostname.match(/^(.+)\.github\.io$/);
+  const repo = location.pathname.split('/')[1];
+  if (m && repo) document.getElementById('repo').href = `https://github.com/${m[1]}/${repo}`;
+</script>
+</body>
+</html>
