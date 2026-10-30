@@ -2,7 +2,11 @@
 
 Phóng to ảnh gấp 4 lần bằng [Real-ESRGAN](https://github.com/xinntao/Real-ESRGAN) x4plus, chạy trên GPU của máy. Có web app kéo-thả chạy cục bộ và CLI xử lý hàng loạt; kết quả là PNG gắn DPI để in.
 
-## Cài đặt
+## Cài đặt nhanh (Windows)
+
+Nhấp đúp `run.bat`. Lần đầu nó tự tạo môi trường Python riêng (`.venv`), tự cài PyTorch (bản GPU nếu có card NVIDIA) và thư viện, tự tải model, rồi mở app. Các lần sau mở ngay. Chỉ cần máy có sẵn [Python](https://www.python.org/downloads/).
+
+## Cài đặt thủ công
 
 ```bash
 pip install torch --index-url https://download.pytorch.org/whl/cu124   # GPU NVIDIA; bỏ --index-url nếu dùng CPU
