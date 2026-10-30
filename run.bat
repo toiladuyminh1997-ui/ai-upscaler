@@ -23,7 +23,11 @@ if not exist ".venv\Scripts\python.exe" (
     ".venv\Scripts\python.exe" -m pip install -r requirements.txt || goto :fail
 )
 
+echo.
+echo  *** KHONG DONG CUA SO NAY khi dang dung app - dong lai la app ngung chay. ***
+echo.
 ".venv\Scripts\python.exe" app.py
+echo Server da dung. Neu co loi, chup man hinh cua so nay.
 pause
 exit /b 0
 

@@ -84,7 +84,9 @@ async function run(f, row) {
     status.innerHTML = `<span class="muted">${size} · ${((performance.now() - t0) / 1000).toFixed(1)}s</span> <a class="btn" download="${name}" href="${url}">Tải về</a>`;
   } catch (e) {
     status.className = 'status err';
-    status.textContent = 'Lỗi: ' + e.message;
+    status.textContent = e instanceof TypeError
+      ? 'Lỗi: không kết nối được server. Cửa sổ đen run.bat phải luôn mở; hãy chạy lại run.bat rồi tải lại trang.'
+      : 'Lỗi: ' + e.message;
   }
 }
 </script>
